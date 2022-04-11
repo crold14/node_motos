@@ -6,8 +6,13 @@ const express = require('express');
 
 const app = express();
 
-//configuracion de los manejadores
+// app.use(cors());
+app.use(express.json()); //para poder recibir objetos a traves del body
+app.use(express.urlencoded({ extended: true }))
 
+
+//configuracion de los manejadores
+app.use(require('./routes'));
 
 
 //exportamos la app
