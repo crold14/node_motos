@@ -5,7 +5,6 @@ router.get('/', async (req, res) => {
 
     try {
         const [result] = await rutaModel.getAll()
-
         res.json(result)
 
     } catch (error) {

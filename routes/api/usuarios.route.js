@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/registro', async (req, res) => {
+router.post('/', async (req, res) => {
 
 
     try {
