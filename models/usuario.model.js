@@ -10,6 +10,10 @@ const create = ({ name, nickname, city, password, description, email, age, img }
 const getByEmail = (pEmail) => {
     return db.query('select * from usuarios where email = ?', [pEmail])
 }
+const deleteById = (usuarioId) => {
+    return db.query('DELETE FROM usuarios WHERE id = ?', [usuarioId])
+
+}
 
 
 
@@ -19,4 +23,5 @@ module.exports = {
     getAll,
     create,
     getByEmail,
+    deleteById
 }

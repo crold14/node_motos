@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
+
 const usuarioModel = require('../../models/usuario.model');
+const utils = require('../../helpers/utils')
 
 router.get('/', async (req, res) => {
 
@@ -15,7 +17,25 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.delete('/:usuarioId', async (req, res) => {
+
+    try {
+        const [result] = await usuarioModel.deleteById(req.params.usuarioId)
+        res.json(result)
+
+    } catch (error) {
+        res.json(error)
+    }
+
+});
+
 router.post('/registro', async (req, res) => {
+
+
+
+    const hash = bcrypt.hashSync(req.body.password, 12);
+    req.body.password = hash;
+
 
 
     try {
@@ -43,6 +63,8 @@ router.post('/login', async (req, res) => {
 
 
     const iguales = bcrypt.compareSync(req.body.password, user.password)
+
+    console.log(iguales);
 
     if (!iguales) {
         return res.json({ error: 'Email y/o contraseña incorrectos' })

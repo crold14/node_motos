@@ -13,5 +13,17 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.get('/:rutaId', async (req, res) => {
+    try {
+
+        const [result] = await rutaModel.getById(req.params.rutaId)
+        res.json(result[0])
+
+    } catch (error) {
+        res.json(error)
+    }
+
+});
+
 
 module.exports = router;
