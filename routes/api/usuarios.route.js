@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/', async (req, res) => {
+router.post('/registro', async (req, res) => {
 
 
     try {
@@ -48,7 +48,7 @@ router.post('/login', async (req, res) => {
         return res.json({ error: 'Email y/o contraseña incorrectos' })
     } else {
         res.json({
-            succes: 'Login correcto',
+            success: 'Login correcto',
             token: utils.createToken(user)
         })
     }
