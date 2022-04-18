@@ -1,3 +1,8 @@
+const jwt = require('jsonwebtoken');
+const usuarioModel = require("../models/usuario.model");
+
+
+
 const checkToken = async (req, res, next) => {
     //1- comrpobar si el TOKEN viene incluido dentro de las cabeceras
 
@@ -26,4 +31,8 @@ const checkToken = async (req, res, next) => {
     req.user = result[0]
 
     next();
+}
+
+module.exports = {
+    checkToken,
 }

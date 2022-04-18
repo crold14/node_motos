@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { checkToken } = require('../../helpers/middlewares.js');
 const rutaModel = require('../../models/ruta.model.js');
 
 router.get('/', async (req, res) => {
@@ -23,6 +24,18 @@ router.get('/:rutaId', async (req, res) => {
     }
 
 });
+
+router.post('/new', checkToken, async (req, res) => {
+    console.log(req.user);
+    req.body.userId = req.user.id;
+    try {
+        const [result] = await rutaModel.create(req.body)
+        res.json(result)
+    } catch (error) {
+        console.log(error);
+        res.json(error)
+    }
+})
 
 
 module.exports = router;

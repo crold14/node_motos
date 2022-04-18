@@ -14,6 +14,9 @@ const deleteById = (usuarioId) => {
     return db.query('DELETE FROM usuarios WHERE id = ?', [usuarioId])
 
 }
+const getById = (usuarioId) => {
+    return db.query('select * from usuarios where id=?', [usuarioId])
+}
 
 
 
@@ -23,5 +26,6 @@ module.exports = {
     getAll,
     create,
     getByEmail,
-    deleteById
+    deleteById,
+    getById,
 }
