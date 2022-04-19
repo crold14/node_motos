@@ -76,6 +76,18 @@ router.post('/login', async (req, res) => {
     }
 })
 
+router.put('/:idUSer', async (req, res) => {
+    try {
+        const [result] = await usuarioModel.update(req.params.idUSer, req.body)
+        res.json(result)
+
+    } catch (error) {
+        console.log(error);
+        res.json(error)
+    }
+});
+
+
 
 
 module.exports = router;

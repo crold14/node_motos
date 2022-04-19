@@ -18,6 +18,49 @@ const getById = (usuarioId) => {
     return db.query('select * from usuarios where id=?', [usuarioId])
 }
 
+// const update = (id, { name, nickname, city, password, description, email, age, img }) => {
+//     return db.query('UPDATE usuarios set name= ? , nickname= ?, city= ? , password= ?, description= ? , email= ?, age= ?, img= ?  WHERE id= ? ', [name, nickname, city, password, description, email, age, img, id])
+// }
+
+const update = (id, { name, nickname, city, password, description, email, age, img }) => {
+    let sql = "UPDATE usuarios "
+    let arr = []
+
+    if (name) {
+        sql += 'set name=?, '
+        arr.push(name)
+    }
+    if (nickname) {
+        sql += 'set nickname=?, '
+        arr.push(nickname)
+    }
+    if (city) {
+        sql += 'set city=?, '
+        arr.push(city)
+    }
+    if (password) {
+        sql += 'set password=?, '
+        arr.push(password)
+    }
+    if (description) {
+        sql += 'set description=?, '
+        arr.push(description)
+    }
+    if (email) {
+        sql += 'set email=?, '
+        arr.push(email)
+    }
+    if (age) {
+        sql += 'set age=?, '
+        arr.push(age)
+    }
+    if (img) {
+        sql += 'set img=?, '
+        arr.push(img)
+    }
+
+    return db.query(sql, arr)
+}
 
 
 
@@ -28,4 +71,5 @@ module.exports = {
     getByEmail,
     deleteById,
     getById,
+    update
 }
