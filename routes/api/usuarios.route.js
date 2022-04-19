@@ -2,7 +2,8 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 
 const usuarioModel = require('../../models/usuario.model');
-const utils = require('../../helpers/utils')
+const utils = require('../../helpers/utils');
+const { checkToken } = require('../../helpers/middlewares');
 
 router.get('/', async (req, res) => {
 
@@ -16,6 +17,13 @@ router.get('/', async (req, res) => {
         res.json(error)
     }
 })
+
+router.get('/perfil', checkToken, (req, res) => {
+
+    res.json(req.user)
+})
+
+
 
 router.delete('/:usuarioId', async (req, res) => {
 
@@ -76,9 +84,9 @@ router.post('/login', async (req, res) => {
     }
 })
 
-router.put('/:idUSer', async (req, res) => {
+router.put('/editarPerfil', checkToken, async (req, res) => {
     try {
-        const [result] = await usuarioModel.update(req.params.idUSer, req.body)
+        const [result] = await usuarioModel.update(req.user.id, req.body)
         res.json(result)
 
     } catch (error) {
