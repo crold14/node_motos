@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `rutas_motos` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `rutas_motos` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `rutas_motos`;
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
@@ -61,10 +61,11 @@ CREATE TABLE `reseñas` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(90) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `coment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `iduser` int NOT NULL,
-  `val` enum('1','2','3','4','5') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `idUser` int NOT NULL,
+  `val` enum('1','2','3','4','5') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `idRoute` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,7 +74,7 @@ CREATE TABLE `reseñas` (
 
 LOCK TABLES `reseñas` WRITE;
 /*!40000 ALTER TABLE `reseñas` DISABLE KEYS */;
-INSERT INTO `reseñas` VALUES (1,'Divertida y bonita','Una ruta cerca de Madrid, con buenas curvas para aprender y disfrutar y rodeado de paisajes de la cercana sierra de gredos.',0,'4'),(2,'prueba','pruebaaaas.',0,'4'),(3,'ejemplo','ejemplooooos.',3,'3');
+INSERT INTO `reseñas` VALUES (1,'Divertida y bonita','Una ruta cerca de Madrid, con buenas curvas para aprender y disfrutar y rodeado de paisajes de la cercana sierra de gredos.',0,'4','1'),(2,'prueba','pruebaaaas.',0,'4','4'),(3,'ejemplo','ejemplooooos.',3,'3','5'),(4,'txyfguhj','prugfbgnfhj,hkebaaaas.',3,'3','4'),(5,'txyfguhj','prugfbgnfhj,hkebaaaas.',3,'3','4'),(6,'txyfguhj','prugfbgnfhj,hkebaaaas.',3,'3','11'),(7,'d','d',3,'5','11'),(8,'d','d',3,'1','7');
 /*!40000 ALTER TABLE `reseñas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,4 +120,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-20 12:21:28
+-- Dump completed on 2022-04-20 13:25:16
