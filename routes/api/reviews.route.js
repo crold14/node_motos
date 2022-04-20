@@ -2,9 +2,9 @@ const router = require('express').Router();
 const { checkToken } = require('../../helpers/middlewares.js');
 const reviewsModel = require('../../models/reviews.model');
 
-router.get('/', async (req, res) => {
+router.get('/:idRoute', async (req, res) => {
     try {
-        const [result] = await reviewsModel.getAll()
+        const [result] = await reviewsModel.getById(req.params.idRoute)
         res.json(result)
 
     } catch (error) {
@@ -12,21 +12,15 @@ router.get('/', async (req, res) => {
         res.json(error)
     }
 })
-router.get('/:reviewsId', async (req, res) => {
-    try {
-        const [result] = await reviewsModel.getById(req.params.reviewsId)
-        res.json(result[0])
 
-    } catch (error) {
-        res.json(error)
-    }
 
-});
-router.post('/new', checkToken, async (req, res) => {
-    console.log(req.user);
+router.post('/:idRoute/new', checkToken, async (req, res) => {
+
     req.body.iduser = req.user.id;
+    req.body.idRoute = req.params.idRoute
+
     try {
-        const [result] = await reviewsModel.create(req.body)
+        const [result] = await reviewsModel.create(req.body, req.params.idRoute)
         res.json(result)
     } catch (error) {
         console.log(error);
