@@ -1,16 +1,15 @@
-const getAll = () => {
-    return db.query('select * from reseñas')
-}
-const create = ({ title, coment, iduser, val, }) => {
-    return db.query('INSERT into reseñas (title, coment, iduser, val) values(?,?,?,?);',
-        [title, coment, iduser, val]
+// const getAll = () => {
+//     return db.query('select * from reseñas')
+// }
+const create = ({ title, coment, iduser, val, idRoute }) => {
+    return db.query('INSERT into reseñas (title, coment, iduser, val, idRoute) values(?,?,?,?,?);',
+        [title, coment, iduser, val, idRoute]
     );
 }
-const getById = (reviewsId) => {
-    return db.query('select * from reseñas where id=?', [reviewsId])
+const getById = (idRoute) => {
+    return db.query('select * from reseñas where idRoute=?', [idRoute])
 }
 module.exports = {
-    getAll,
     create,
     getById,
 }
