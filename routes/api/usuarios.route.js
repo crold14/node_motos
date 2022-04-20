@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
         res.json(result)
 
     } catch (error) {
-        console.log(error);
+
         res.json(error)
     }
 })
@@ -51,7 +51,7 @@ router.post('/registro', async (req, res) => {
         res.json(result)
 
     } catch (error) {
-        console.log(error);
+
         res.json(error)
     }
 
@@ -66,13 +66,13 @@ router.post('/login', async (req, res) => {
     if (result.length === 0) {
         return res.json({ error: 'Email y/o contraseña incorrectos' })
     }
-    console.log(result[0]);
+
     const user = result[0]
 
 
     const iguales = bcrypt.compareSync(req.body.password, user.password)
 
-    console.log(iguales);
+
 
     if (!iguales) {
         return res.json({ error: 'Email y/o contraseña incorrectos' })
@@ -87,6 +87,23 @@ router.post('/login', async (req, res) => {
 router.put('/editarPerfil', checkToken, async (req, res) => {
     try {
         const [result] = await usuarioModel.update(req.user.id, req.body)
+        res.json(result)
+
+    } catch (error) {
+
+        res.json(error)
+    }
+});
+
+router.put('/changePassword', checkToken, async (req, res) => {
+
+    console.log('pass', req.body.password);
+    const hash = bcrypt.hashSync(req.body.password, 12);
+    req.body.password = hash;
+
+
+    try {
+        const [result] = await usuarioModel.changePassword(req.user.id, req.body)
         res.json(result)
 
     } catch (error) {

@@ -20,8 +20,12 @@ const getById = (usuarioId) => {
     return db.query('select * from usuarios where id=?', [usuarioId])
 }
 
+const changePassword = (id, { password }) => {
+    return db.query('UPDATE usuarios set password = ? WHERE id = ?', [password, id])
+}
 
-const update = (id, { name, nickname, city, password, description, email, age, img }) => {
+
+const update = (id, { name, nickname, city, description, email, age, img }) => {
     let sql = "UPDATE usuarios "
     let arr = []
 
@@ -37,10 +41,10 @@ const update = (id, { name, nickname, city, password, description, email, age, i
         sql += ' set city=?,'
         arr.push(city)
     }
-    if (password) {
-        sql += ' set password=?,'
-        arr.push(password)
-    }
+    // if (password) {
+    //     sql += ' set password=?,'
+    //     arr.push(password)
+    // }
     if (description) {
         sql += ' set description=?,'
         arr.push(description)
@@ -59,12 +63,10 @@ const update = (id, { name, nickname, city, password, description, email, age, i
     }
 
     let sqlFin = sql.slice(0, -1)
-    console.log(sqlFin);
-    console.log(sql);
+
     sqlFin += ' WHERE id = ?'
 
-    console.log(sqlFin);
-    console.log(id);
+
     arr.push(id)
 
     return db.query(sqlFin, arr)
@@ -79,5 +81,6 @@ module.exports = {
     getByEmail,
     deleteById,
     getById,
-    update
+    update,
+    changePassword
 }
