@@ -7,7 +7,8 @@ const create = ({ title, coment, iduser, val, idRoute }) => {
     );
 }
 const getById = (idRoute) => {
-    return db.query('select * from reseñas where idRoute=?', [idRoute])
+    return db.query(' SELECT r.*,u.nickname, u.name  FROM  reseñas r, usuarios u WHERE  r.idUser = u.id and r.id=?', [idRoute])
+
 }
 module.exports = {
     create,

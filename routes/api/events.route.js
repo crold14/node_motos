@@ -7,10 +7,40 @@ router.get('/', async (req, res) => {
     try {
         const [result] = await eventsModel.getAll()
 
+        for (let evento of result) {
+            const [resultUsers] = await eventsModel.asistencia(evento.id)
+            evento.users = resultUsers
+
+        }
+
         res.json(result)
 
     } catch (error) {
 
+        res.json(error)
+    }
+})
+
+router.get('/:eventId', async (req, res) => {
+    try {
+        const [result] = await eventsModel.getById(req.params.eventId)
+        res.json(result)
+
+    } catch (error) {
+        console.log(error);
+        res.json(error)
+    }
+})
+
+router.post('/asist', checkToken, async (req, res) => {
+
+    req.body.idUser = req.user.id;
+
+    try {
+        const [result] = await eventsModel.inscribe(req.body, req.params.idEvent)
+        res.json(result)
+    } catch (error) {
+        console.log(error);
         res.json(error)
     }
 })
@@ -28,6 +58,7 @@ router.post('/new', checkToken, async (req, res) => {
         res.json(error)
     }
 })
+
 
 
 
