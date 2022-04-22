@@ -31,6 +31,18 @@ router.get('/:eventId', async (req, res) => {
         res.json(error)
     }
 })
+router.get('/:idEvent/coments', async (req, res) => {
+    try {
+        const [result] = await eventsModel.getAllComents(req.params.idEvent)
+        res.json(result)
+
+    } catch (error) {
+        console.log(error);
+        res.json(error)
+    }
+})
+
+
 
 router.post('/asist', checkToken, async (req, res) => {
 
@@ -52,6 +64,22 @@ router.post('/new', checkToken, async (req, res) => {
 
     try {
         const [result] = await eventsModel.create(req.body, req.params)
+        res.json(result)
+    } catch (error) {
+        console.log(error);
+        res.json(error)
+    }
+})
+
+router.post('/:idEvent', checkToken, async (req, res) => {
+
+    req.body.iduser = req.user.id;
+    console.log(req.body);
+    console.log(req.params);
+
+    try {
+        const obj = { comentario: req.body.comentario, idEvent: req.params.idEvent, idUser: req.user.id }
+        const [result] = await eventsModel.newComentario(obj)
         res.json(result)
     } catch (error) {
         console.log(error);

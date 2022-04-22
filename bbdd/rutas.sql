@@ -18,6 +18,57 @@ USE `rutas_motos`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `evento_usuario`
+--
+
+DROP TABLE IF EXISTS `evento_usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `evento_usuario` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `idUser` int NOT NULL,
+  `idEvent` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `evento_usuario`
+--
+
+LOCK TABLES `evento_usuario` WRITE;
+/*!40000 ALTER TABLE `evento_usuario` DISABLE KEYS */;
+INSERT INTO `evento_usuario` VALUES (1,3,1),(2,4,1),(3,4,2),(4,3,3),(5,4,5),(6,3,5),(8,3,2);
+/*!40000 ALTER TABLE `evento_usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `eventos`
+--
+
+DROP TABLE IF EXISTS `eventos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `eventos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `idUser` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `eventos`
+--
+
+LOCK TABLES `eventos` WRITE;
+/*!40000 ALTER TABLE `eventos` DISABLE KEYS */;
+INSERT INTO `eventos` VALUES (1,'Ruta por la Sierra de Cazorla','Estoy empezando en esto de las motos y me gustaria relizar una ruta por la sierra de cazorla. ¿Alguien se anima?',4),(2,'Ruta por la playa','Ruta rapida por las arenas de Oliva',3);
+/*!40000 ALTER TABLE `eventos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `mapas`
 --
 
@@ -74,7 +125,7 @@ CREATE TABLE `reseñas` (
 
 LOCK TABLES `reseñas` WRITE;
 /*!40000 ALTER TABLE `reseñas` DISABLE KEYS */;
-INSERT INTO `reseñas` VALUES (1,'Divertida y bonita','Una ruta cerca de Madrid, con buenas curvas para aprender y disfrutar y rodeado de paisajes de la cercana sierra de gredos.',0,'4','1');
+INSERT INTO `reseñas` VALUES (1,'Divertida y bonita','Una ruta cerca de Madrid, con buenas curvas para aprender y disfrutar y rodeado de paisajes de la cercana sierra de gredos.',3,'4','1');
 /*!40000 ALTER TABLE `reseñas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,7 +158,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (3,'Carlos Roldá,','rol14','Madrid','$2a$12$HfQ/IMYIoOyAXEl73DWO0.6DJA//Vl1IpsLsdo12rVd7X0lhRK2IO','eiiiiiiiii','carlos_roldan92@hotmail.com',30,''),(4,'Rubén Tomé','rtome14','Alcorcón','$2a$12$jXPen48ugpU.ClZwED/PSu2sz1pKxc81u4jHmLf0eU2CA09IF3RHu','Rider de yamaha fz.','r.tome14@hotmail.com',27,'C:\\fakepath\\DSC_0022.jpg');
+INSERT INTO `usuarios` VALUES (3,'Carlos Roldán','rol14','Madrid','$2a$12$HfQ/IMYIoOyAXEl73DWO0.6DJA//Vl1IpsLsdo12rVd7X0lhRK2IO','eiiiiiiiii','carlos_roldan92@hotmail.com',30,''),(4,'Rubén Tomé','rtome14','Alcorcón','$2a$12$jXPen48ugpU.ClZwED/PSu2sz1pKxc81u4jHmLf0eU2CA09IF3RHu','Rider de yamaha fz.','r.tome14@hotmail.com',27,'C:\\fakepath\\DSC_0022.jpg');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -120,4 +171,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-20 17:37:08
+-- Dump completed on 2022-04-21 17:37:49
