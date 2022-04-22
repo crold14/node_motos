@@ -18,6 +18,31 @@ USE `rutas_motos`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `comentarios`
+--
+
+DROP TABLE IF EXISTS `comentarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `comentarios` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `comentario` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `idEvent` int NOT NULL,
+  `idUser` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comentarios`
+--
+
+LOCK TABLES `comentarios` WRITE;
+/*!40000 ALTER TABLE `comentarios` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comentarios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `evento_usuario`
 --
 
@@ -38,7 +63,6 @@ CREATE TABLE `evento_usuario` (
 
 LOCK TABLES `evento_usuario` WRITE;
 /*!40000 ALTER TABLE `evento_usuario` DISABLE KEYS */;
-INSERT INTO `evento_usuario` VALUES (1,3,1),(2,4,1),(3,4,2),(4,3,3),(5,4,5),(6,3,5),(8,3,2);
 /*!40000 ALTER TABLE `evento_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +140,7 @@ CREATE TABLE `reseñas` (
   `val` enum('1','2','3','4','5') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `idRoute` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,4 +195,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-21 17:37:49
+-- Dump completed on 2022-04-22 12:35:04
