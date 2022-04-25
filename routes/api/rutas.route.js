@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
         res.json(result)
 
     } catch (error) {
-        console.log(error);
+
         res.json(error)
     }
 })
@@ -32,7 +32,7 @@ router.post('/new', checkToken, async (req, res) => {
         const [result] = await rutaModel.create(req.body)
         res.json(result)
     } catch (error) {
-        console.log(error);
+
         res.json(error)
     }
 })
