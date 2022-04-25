@@ -26,39 +26,39 @@ const changePassword = (id, { password }) => {
 
 
 const update = (id, { name, nickname, city, description, email, age, img }) => {
-    let sql = "UPDATE usuarios "
+    let sql = "UPDATE usuarios set "
     let arr = []
 
     if (name) {
-        sql += ' set name=?,'
+        sql += ' name=?,'
         arr.push(name)
     }
     if (nickname) {
-        sql += ' set nickname=?,'
+        sql += ' nickname=?,'
         arr.push(nickname)
     }
     if (city) {
-        sql += ' set city=?,'
+        sql += ' city=?,'
         arr.push(city)
     }
     // if (password) {
-    //     sql += ' set password=?,'
+    //     sql += ' password=?,'
     //     arr.push(password)
     // }
     if (description) {
-        sql += ' set description=?,'
+        sql += ' description=?,'
         arr.push(description)
     }
     if (email) {
-        sql += ' set email=?,'
+        sql += ' email=?,'
         arr.push(email)
     }
     if (age) {
-        sql += ' set age=?,'
+        sql += ' age=?,'
         arr.push(age)
     }
     if (img) {
-        sql += ' set img=?,'
+        sql += ' img=?,'
         arr.push(img)
     }
 
@@ -70,6 +70,7 @@ const update = (id, { name, nickname, city, description, email, age, img }) => {
     arr.push(id)
 
     return db.query(sqlFin, arr)
+
 }
 
 

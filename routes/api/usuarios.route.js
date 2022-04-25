@@ -90,7 +90,7 @@ router.put('/editarPerfil', checkToken, async (req, res) => {
         res.json(result)
 
     } catch (error) {
-
+        console.log(error);
         res.json(error)
     }
 });
