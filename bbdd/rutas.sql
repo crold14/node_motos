@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `rutas_motos` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `rutas_motos` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `rutas_motos`;
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `comentarios`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `comentarios` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `comentario` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comentario` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `idEvent` int NOT NULL,
   `idUser` int NOT NULL,
   `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -40,6 +40,7 @@ CREATE TABLE `comentarios` (
 
 LOCK TABLES `comentarios` WRITE;
 /*!40000 ALTER TABLE `comentarios` DISABLE KEYS */;
+INSERT INTO `comentarios` VALUES (1,'Me gusta la propuesta, un amigo y yo podriamos pero tendria que ser cualquier finde de Junio',3,5,'2022-04-25 10:02:43'),(2,'Me animo¡¡¡',3,7,'2022-04-25 10:05:21'),(3,'Yo tambien me animo, no soy experto pero me gustaria ir ',3,4,'2022-04-25 10:05:21'),(4,'No hay ningun problema, aquí se acepta a todo el mundo',3,6,'2022-04-25 10:05:21');
 /*!40000 ALTER TABLE `comentarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,7 +56,7 @@ CREATE TABLE `evento_usuario` (
   `idUser` int NOT NULL,
   `idEvent` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,6 +65,7 @@ CREATE TABLE `evento_usuario` (
 
 LOCK TABLES `evento_usuario` WRITE;
 /*!40000 ALTER TABLE `evento_usuario` DISABLE KEYS */;
+INSERT INTO `evento_usuario` VALUES (1,4,3),(2,5,3),(3,6,3),(4,7,3);
 /*!40000 ALTER TABLE `evento_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,7 +81,7 @@ CREATE TABLE `eventos` (
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `idUser` int NOT NULL,
-  `datel` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -90,7 +92,7 @@ CREATE TABLE `eventos` (
 
 LOCK TABLES `eventos` WRITE;
 /*!40000 ALTER TABLE `eventos` DISABLE KEYS */;
-INSERT INTO `eventos` VALUES (1,'Ruta por la Sierra de Cazorla','Estoy empezando en esto de las motos y me gustaria relizar una ruta por la sierra de cazorla. ¿Alguien se anima?',4,'2022-04-25 08:58:53'),(2,'Ruta por la playa','Ruta rapida por las arenas de Oliva',3,'2022-04-25 08:58:53');
+INSERT INTO `eventos` VALUES (1,'Ruta por la Sierra de Cazorla','Estoy empezando en esto de las motos y me gustaria relizar una ruta por la sierra de cazorla. ¿Alguien se anima?',4,'2022-04-25 08:58:53'),(2,'Ruta por la playa','Ruta rapida por las arenas de Oliva',3,'2022-04-25 08:58:53'),(3,'Quedada sabado 28 de mayo ','Estoy organizando una quedada para juntarnos un grupillo y poder ir de ruta. Se aceptan proposiciones. Animense!!',6,'2022-04-25 09:55:09'),(4,'Fin de semana motero','Quedada de dos dias, cualquier fin de semana de Julio, ruta por la mañana y tapeo por las tardes',7,'2022-04-25 09:58:40');
 /*!40000 ALTER TABLE `eventos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,7 +178,7 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `nickname_UNIQUE` (`nickname`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -185,7 +187,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (3,'Carlos Roldán','rol14','Madrid','$2a$12$HfQ/IMYIoOyAXEl73DWO0.6DJA//Vl1IpsLsdo12rVd7X0lhRK2IO','eiiiiiiiii','carlos_roldan92@hotmail.com',30,''),(4,'Rubén Tomé','rtome14','Alcorcón','$2a$12$jXPen48ugpU.ClZwED/PSu2sz1pKxc81u4jHmLf0eU2CA09IF3RHu','Rider de yamaha fz.','r.tome14@hotmail.com',27,'C:\\fakepath\\DSC_0022.jpg'),(5,'Julian Macias','jmacias','Madrid','$2a$12$uv0crtyzjCNsCCtyqIyDXe0BT9.Hev7kd3sNtz4vzf1dHMDexhmIq','Profesional de los deportes extremos.','jmacias@gmail.com',30,''),(6,'Mario Giron','mgiron','Madrid','$2a$12$V.QAfEiPJJSkmGX82PKBoODzbD7s0aZn9a/87TmqDQZWltEk.BNIe','Developer profesional, youtuber y dj en mis ratos libres.','mgiron@gmail.com',38,''),(7,'Juan Antonio Perez','juanan','Madrid','$2a$12$krziJySAvc.MVC3oeP/5.e9wWLTG/9mzhdpoMMcchcBwTzOVdtDIq','Developer profesional y poli malo en clase como hobby.','juanan@gmail.com',40,''),(8,'Celia Ruiz','cruiz','Sanblas','$2a$12$CWPpyrUXoJQM6cR96mNtmeaDQFUmMHewNuajmPv9PtXPHH0PLyrAm','Developer jr que no pierde el tiempo en echar cvs.','cruiz@gmail.com',27,''),(9,'Alvaro tome','atome','Alcorcon','$2a$12$M8FxS9MiaGeVBKDkj32Ue.rBo7p5jmjV4gjiz2CMT53jG48o/wM0W','rider de dos ruedas sin motor.','atome@gmail.com',18,'');
+INSERT INTO `usuarios` VALUES (3,'Carlos Roldán','rol14','Madrid','$2a$12$HfQ/IMYIoOyAXEl73DWO0.6DJA//Vl1IpsLsdo12rVd7X0lhRK2IO','Creador de la página y motero solo para ir a trabajar','carlos_roldan92@hotmail.com',30,'e6d0fe911ba03b645f611d11082c4c58.jpeg'),(4,'Rubén Tomé','rtome14','Alcorcón','$2a$12$uk.pwYsHJqg43WUvZ66dqOVffBXrTHdLhgPr79SlrnnisOm907a.y','Rider profesional aunque estoy mas tiempo en el suelo','r.tome14@hotmail.com',27,'c9b1b0914417589bef45dad8c9731079.jpeg'),(5,'Julian Macias','jmacias','Madrid','$2a$12$uv0crtyzjCNsCCtyqIyDXe0BT9.Hev7kd3sNtz4vzf1dHMDexhmIq','Profesional de los deportes extremos.','jmacias@gmail.com',30,'8b37608e8169ed19384290785ff2aba3.jpeg'),(6,'Mario Girón','mgiron','Madrid','$2a$12$V.QAfEiPJJSkmGX82PKBoODzbD7s0aZn9a/87TmqDQZWltEk.BNIe','Developer profesional, youtuber y dj en mis ratos libres.','mgiron@gmail.com',44,'ac2ff36402f7daf33ec3af930048fbf6.png'),(7,'Juan Antonio Perez','juanan','Madrid','$2a$12$krziJySAvc.MVC3oeP/5.e9wWLTG/9mzhdpoMMcchcBwTzOVdtDIq','Developer profesional y poli malo en clase como hobby.','juanan@gmail.com',40,'340479cb6f32425eb6989a8b2376a7b4.png'),(8,'Celia Ruiz','cruiz','Sanblas','$2a$12$CWPpyrUXoJQM6cR96mNtmeaDQFUmMHewNuajmPv9PtXPHH0PLyrAm','Developer jr que no pierde el tiempo en echar cvs.','cruiz@gmail.com',27,'9068596d5644b1d3d418118f4d59b243.jpeg'),(9,'Alvaro tome','atome','Alcorcon','$2a$12$M8FxS9MiaGeVBKDkj32Ue.rBo7p5jmjV4gjiz2CMT53jG48o/wM0W','rider de dos ruedas sin motor.','atome@gmail.com',18,'7a05588ede4859eaf61cfbad462a3775.png'),(11,'Lucia García','LaLuci','Castelldefels','$2a$12$I3q7droNdmo3ArhcEZDHR.IAMG7f.5jFyjR5xd4MzBZFitoBQu/aK','Amante de las motos ','laluci@gmail.com',32,'df7dc6ec6111648b961b4a1a7ddb8cba.png'),(26,'Isabel Castilla','LaIsaH ResHhulonNa','Debajo de Playmouth','$2a$12$qUOojRoIJyJHS2m7qaCK4OiZJr0peR/K.fCoKfantozk.2FdM3Dqq','Soy una otaku de las motos','isa@gmail.com',29,'97120e9b1bdab91de0135973c6322852.jpeg');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -198,4 +200,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-25 11:01:37
+-- Dump completed on 2022-04-25 16:04:28
