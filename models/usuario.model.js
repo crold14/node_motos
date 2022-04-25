@@ -41,10 +41,7 @@ const update = (id, { name, nickname, city, description, email, age, img }) => {
         sql += ' city=?,'
         arr.push(city)
     }
-    // if (password) {
-    //     sql += ' password=?,'
-    //     arr.push(password)
-    // }
+
     if (description) {
         sql += ' description=?,'
         arr.push(description)
